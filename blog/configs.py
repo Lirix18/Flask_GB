@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+FLASK_ADMIN_SWATCH = 'cosmo'
+
 
 class BaseConfig(object):
     DEBUG = False
@@ -20,3 +22,4 @@ class DevConfig(BaseConfig):
 
 class TestingConfig(BaseConfig):
     TESTING = True
+

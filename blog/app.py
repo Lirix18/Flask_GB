@@ -5,6 +5,7 @@ from blog.views.authors import authors_app
 from blog.models.database import db
 from blog.views.auth import login_manager, auth_app
 from blog.security import flask_bcrypt
+from blog.admin import admin
 import os
 from flask_migrate import Migrate
 
@@ -23,6 +24,7 @@ app.register_blueprint(auth_app, url_prefix="/auth")
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
 # app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+admin.init_app(app)
 db.init_app(app)
 login_manager.init_app(app)
 flask_bcrypt.init_app(app)
