@@ -9,6 +9,8 @@ from blog.admin import admin
 import os
 from flask_migrate import Migrate
 
+from blog.api import init_api
+
 
 cfg_name = os.environ.get("CONFIG_NAME") or "DevConfig"
 app = Flask(__name__)
@@ -26,6 +28,7 @@ app.register_blueprint(auth_app, url_prefix="/auth")
 
 admin.init_app(app)
 db.init_app(app)
+api = init_api(app)
 login_manager.init_app(app)
 flask_bcrypt.init_app(app)
 
