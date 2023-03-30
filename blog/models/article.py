@@ -15,7 +15,7 @@ class Article(db.Model):
     dt_created = Column(DateTime, default=datetime.utcnow, server_default=func.now())
     dt_updated = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    author = relationship("Author", back_populates='articles')
+    author = relationship("Author", uselist=False, back_populates='articles')
     tags = relationship(
         "Tag",
         secondary=article_tag_association_table,
