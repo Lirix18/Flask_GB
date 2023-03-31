@@ -13,7 +13,8 @@ from blog.api import init_api
 
 
 cfg_name = os.environ.get("CONFIG_NAME") or "DevConfig"
-app = Flask(__name__)
+
+app = Flask(__name__, static_url_path='/static')
 
 migrate = Migrate(app, db, compare_type=True)
 app.config.from_object(f"blog.configs.{cfg_name}")
@@ -22,9 +23,9 @@ app.register_blueprint(articles_app, url_prefix="/articles")
 app.register_blueprint(authors_app, url_prefix="/authors")
 app.register_blueprint(auth_app, url_prefix="/auth")
 
-# app.config["SECRET_KEY"] = "abcdefg123456"
-# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
-# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SECRET_KEY"] = "abcdefg123456"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 admin.init_app(app)
 db.init_app(app)
